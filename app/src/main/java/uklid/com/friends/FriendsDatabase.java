@@ -1,6 +1,5 @@
 package uklid.com.friends;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -36,15 +35,18 @@ public class FriendsDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        int bersion = oldVersion;
+        int version = oldVersion;
         if(version == 1) {
             // Add some extra fields to the database w/o deleting existing data
-            version == 2;
+            version = 2;
         }
         if(version != DATABASE_VERSION) {
             db.execSQL("DROP TABLE IF EXISTS " + Tables.FRIENDS);
             onCreate(db);
         }
-        //Changing test
+    }
+
+    public static void deleteDatabase(Context context) {
+        context.deleteDatabase(DATABASE_NAME);
     }
 }
