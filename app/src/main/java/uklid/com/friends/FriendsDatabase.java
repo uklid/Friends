@@ -45,5 +45,6 @@ public class FriendsDatabase extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + Tables.FRIENDS);
             onCreate(db);
         }
+        //Changing test
     }
 }
