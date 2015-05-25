@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class FriendsListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<List<Friend>> {
+
     private static final String LOG_TAG = FriendsListFragment.class.getSimpleName();
     private FriendsCustomAdapter mAdapter;
     private static final int LOADER_ID = 1;
@@ -24,7 +25,7 @@ public class FriendsListFragment extends ListFragment
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
         mContentResolver = getActivity().getContentResolver();
-        mAdapter = new FriensCustomAdapter(getActivity(), getChildFragmentManager());
+        mAdapter = new FriendsCustomAdapter(getActivity(), getChildFragmentManager());
         setEmptyText("No Friends");
         setListAdapter(mAdapter);
         setListShown(false);

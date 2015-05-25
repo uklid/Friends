@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by Uklid on 5/23/2015.
  */
@@ -51,8 +53,7 @@ public class FriendsCustomAdapter extends ArrayAdapter<Friend> {
                 intent.putExtra(FriendsContract.FriendsColumns.FRIENDS_NAME, String.valueOf(name));
                 intent.putExtra(FriendsContract.FriendsColumns.FRIENDS_EMAIL, String.valueOf(email));
                 intent.putExtra(FriendsContract.FriendsColumns.FRIENDS_PHONE, String.valueOf(phone));
-                getContext().startActivities(intent);
-                R.
+                getContext().startActivity(intent);
             }
         });
 
@@ -60,15 +61,25 @@ public class FriendsCustomAdapter extends ArrayAdapter<Friend> {
         deleteButton.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                FriendsDialog dialog = new FrindsDialog();
+                                                FriendsDialog dialog = new FriendsDialog();
                                                 Bundle args = new Bundle();
                                                 args.putString(FriendsDialog.DIALOG_TYPE, FriendsDialog.DELETE_RECORD);
-                                                args.putString(FriendsContract.FriendsColumns.FRIENDS_ID, String.valueOf(id));
+                                                args.putString(FriendsContract.FriendsColumns.FRIENDS_ID, String.valueOf(_id));
                                                 args.putString(FriendsContract.FriendsColumns.FRIENDS_NAME, name);
                                                 dialog.setArguments(args);
                                                 dialog.show(sFragmentManager, "delete-record");
                                             }
                                         }
         );
+        return view;
     }
+    public void setData(List<Friend> friends) {
+        clear();
+        if(friends != null) {
+            for(Friend friend : friends) {
+                add(friend);
+            }
+        }
+    }
+
 }
